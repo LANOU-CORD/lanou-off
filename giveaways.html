@@ -97,7 +97,7 @@
     <script>
         // Configuration de l'API Supabase
         const SUPABASE_URL = "https://iuzrftruzkkxmssqrerv.supabase.co";
-        // Remplacez la chaîne ci-dessous par votre propre clé publique Supabase (publique)
+        // Remplacez par votre vraie clé publique (anon key) depuis l'onglet API de Supabase
         const SUPABASE_ANON_KEY = "VOTRE_CLE_PUBLIQUE_ICI"; 
         
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -114,6 +114,7 @@
                 document.getElementById('password-panel').classList.add('hidden');
                 document.getElementById('admin-panel').classList.remove('hidden');
                 localStorage.setItem('admin_connecte', 'true');
+                alert('Mode Admin activé !');
             } else {
                 alert('Mot de passe incorrect.');
             }
@@ -124,6 +125,7 @@
             location.reload();
         }
 
+        // Garde la session ouverte entre les rechargements
         if (localStorage.getItem('admin_connecte') === 'true') {
             document.getElementById('admin-panel').classList.remove('hidden');
         }
@@ -147,19 +149,20 @@
         }
 
         async function chargerConcours() {
+            const listeConcours = document.getElementById('liste-concours');
+            
+            // Récupère les données de la table 'concours'
             const { data, error } = await supabase
                 .from('concours')
                 .select('*')
                 .order('created_at', { ascending: false });
-
-            const listeConcours = document.getElementById('liste-concours');
 
             if (error) {
                 listeConcours.innerHTML = `<p class="text-red-400 text-center py-6">Erreur lors du chargement : ${error.message}</p>`;
                 return;
             }
 
-            if (data.length === 0) {
+            if (!data || data.length === 0) {
                 listeConcours.innerHTML = `<p class="text-gray-400 text-center py-6">Aucun concours en cours pour le moment.</p>`;
                 return;
             }
@@ -201,12 +204,13 @@
                     await envoyerSurDiscord(titre, description, webhook);
                 }
 
-                alert("Concours ajouté avec succès et publié !");
+                alert("Concours ajouté avec succès !");
                 document.getElementById('form-concours').reset();
                 chargerConcours();
             }
         });
 
+        // Charger les concours au chargement de la page
         chargerConcours();
     </script>
 </body>
