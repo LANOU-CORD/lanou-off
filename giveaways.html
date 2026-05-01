@@ -6,6 +6,7 @@
     <title>LANOU | OFF - Giveaways</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         body {
             background-color: #111827;
@@ -40,14 +41,26 @@
 
     <main class="max-w-4xl mx-auto px-6 py-12">
         <h1 class="text-3xl font-extrabold text-white mb-6">Animations & Giveaways</h1>
-        <div class="content-card p-8 rounded-2xl shadow-lg border border-gray-800">
-            <h2 class="text-xl font-bold text-red-400 mb-4">Tentez de gagner des lots exclusifs</h2>
-            <p class="text-gray-400 leading-relaxed mb-6">
-                Participez à nos événements réguliers organisés par la communauté. Ne manquez aucune annonce et restez connectés pour tenter de remporter des cadeaux.
-            </p>
-            <a href="https://discord.gg/2VFEHQdBVR" target="_blank" class="bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-lg font-bold shadow-lg transition">
-                Participer aux Giveaways
-            </a>
+        
+        <div class="content-card p-6 rounded-2xl shadow-lg border border-gray-800 mb-8">
+            <h3 class="text-lg font-bold text-red-400 mb-4"><i class="fa-solid fa-plus-circle mr-2"></i> Ajouter un concours</h3>
+            <form id="form-concours" class="space-y-4">
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Titre du concours</label>
+                    <input type="text" id="titre" required class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm text-white focus:outline-none focus:border-red-500">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Description</label>
+                    <textarea id="description" required rows="2" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm text-white focus:outline-none focus:border-red-500"></textarea>
+                </div>
+                <button type="submit" class="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-bold shadow transition cursor-pointer">
+                    Publier le concours
+                </button>
+            </form>
+        </div>
+
+        <div id="liste-concours" class="space-y-6">
+            <p class="text-gray-500 text-center py-6">Chargement des concours en cours...</p>
         </div>
     </main>
 
@@ -55,5 +68,66 @@
         <div>Copyright &copy; 2026 LANOU | OFF</div>
     </footer>
 
+    <script>
+        // Remplacez ces valeurs par vos clés publiques Supabase
+        const SUPABASE_URL = "https://votre-projet.supabase.co";
+        const SUPABASE_ANON_KEY = "votre-cle-anonyme";
+        
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        async function chargerConcours() {
+            const { data, error } = await supabase
+                .from('concours')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            const listeConcours = document.getElementById('liste-concours');
+
+            if (error) {
+                listeConcours.innerHTML = `<p class="text-red-400 text-center py-6">Erreur lors du chargement : ${error.message}</p>`;
+                return;
+            }
+
+            if (data.length === 0) {
+                listeConcours.innerHTML = `<p class="text-gray-400 text-center py-6">Aucun concours en cours pour le moment.</p>`;
+                return;
+            }
+
+            listeConcours.innerHTML = data.map(c => `
+                <div class="content-card p-8 rounded-2xl shadow-lg border border-gray-800 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl font-bold text-red-400 mb-2">${c.titre}</h2>
+                        <p class="text-gray-400 leading-relaxed mb-4">${c.description}</p>
+                        <span class="text-xs text-gray-500"><i class="fa-regular fa-calendar-days mr-1"></i> Ajouté le ${new Date(c.created_at).toLocaleDateString('fr-FR')}</span>
+                    </div>
+                    <div>
+                        <a href="${c.lien_discord}" target="_blank" class="bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-lg font-bold shadow-lg transition whitespace-nowrap">
+                            Participer
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        document.getElementById('form-concours').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const titre = document.getElementById('titre').value;
+            const description = document.getElementById('description').value;
+
+            const { error } = await supabase
+                .from('concours')
+                .insert([{ titre, description, lien_discord: 'https://discord.gg/2VFEHQdBVR' }]);
+
+            if (error) {
+                alert("Erreur lors de l'ajout : " + error.message);
+            } else {
+                alert("Concours ajouté avec succès !");
+                document.getElementById('form-concours').reset();
+                chargerConcours();
+            }
+        });
+
+        chargerConcours();
+    </script>
 </body>
 </html>
