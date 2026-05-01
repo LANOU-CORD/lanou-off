@@ -42,23 +42,23 @@
             <a href="#giveaways" class="hover:text-white transition">GIVEAWAYS</a>
         </nav>
         <div class="flex items-center space-x-4">
-            <a href="https://discord.gg/2VFEHQdBVR" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition flex items-center shadow-md">
-                <i class="fa-brands fa-discord mr-2"></i> Rejoindre Discord
-            </a>
+            <button onclick="alert('Fonctionnalité bientôt disponible sur le site !')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition flex items-center shadow-md cursor-pointer">
+                <i class="fa-solid fa-user-lock mr-2"></i> Espace Membre
+            </button>
         </div>
     </header>
 
     <section id="accueil" class="hero-section py-16 px-6 text-center">
         <div class="max-w-4xl mx-auto bg-gray-900/80 p-8 rounded-2xl border border-gray-800 shadow-2xl backdrop-blur-sm">
             <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">
-                REJOIGNEZ NOTRE COMMUNAUTÉ VIBRANTE !
+                BIENVENUE SUR NOTRE SITE OFFICIEL
             </h1>
             <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
-                Découvrez un univers de partage, discutez de mangas, partagez vos meilleures sessions gaming et suivez nos actus en direct !
+                Découvrez un univers de partage, discutez de mangas, apprenez à coder ou partagez vos meilleures sessions gaming en direct !
             </p>
-            <a href="https://discord.gg/2VFEHQdBVR" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl text-lg font-bold shadow-lg transition duration-200 transform hover:-translate-y-1">
-                REJOINDRE LE DISCORD
-            </a>
+            <button onclick="document.getElementById('communaute').scrollIntoView();" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl text-lg font-bold shadow-lg transition duration-200 transform hover:-translate-y-1 cursor-pointer">
+                DÉCOUVRIR LE SITE
+            </button>
             <div class="flex justify-center items-center mt-6 space-x-6 text-sm text-gray-400">
                 <span class="flex items-center"><span class="h-2 w-2 bg-green-500 rounded-full mr-2 animate-pulse"></span> 14 en ligne</span>
                 <span class="flex items-center"><i class="fa-solid fa-user text-gray-500 mr-2"></i> 19 membres</span>
@@ -75,10 +75,10 @@
                     Échangez sur vos mangas, films et séries préférés avec d'autres passionnés dans une ambiance conviviale.
                 </p>
             </div>
-            <a href="https://discord.gg/2VFEHQdBVR" class="text-xs text-blue-400 mt-4 hover:underline">En savoir plus →</a>
+            <button onclick="alert('Ouverture de la page de discussion... (en construction)')" class="text-xs text-blue-400 mt-4 hover:underline text-left cursor-pointer">En savoir plus →</button>
         </div>
 
-        <div id="zone-gaming" class="custom-card p-6 rounded-2xl flex flex-col justify-between h-64">
+        <div class="custom-card p-6 rounded-2xl flex flex-col justify-between h-64">
             <div>
                 <div class="text-yellow-400 text-3xl mb-4"><i class="fa-solid fa-gamepad"></i></div>
                 <h3 class="font-bold text-lg text-white mb-2">ZONE GAMING</h3>
@@ -86,7 +86,7 @@
                     Rejoignez les joueurs sur PC, console ou mobile. Partagez vos clips et trouvez des coéquipiers.
                 </p>
             </div>
-            <a href="https://discord.gg/2VFEHQdBVR" class="text-xs text-yellow-400 mt-4 hover:underline">En savoir plus →</a>
+            <button onclick="alert('Ouverture de l\'espace gaming... (en construction)')" class="text-xs text-yellow-400 mt-4 hover:underline text-left cursor-pointer">En savoir plus →</button>
         </div>
 
         <div id="partenariats" class="custom-card p-6 rounded-2xl flex flex-col justify-between h-64">
@@ -97,7 +97,7 @@
                     Développez vos projets, trouvez de l'aide et bénéficiez d'une belle visibilité au sein du réseau.
                 </p>
             </div>
-            <a href="https://discord.gg/2VFEHQdBVR" class="text-xs text-indigo-400 mt-4 hover:underline">En savoir plus →</a>
+            <button onclick="alert('Ouverture des partenariats... (en construction)')" class="text-xs text-indigo-400 mt-4 hover:underline text-left cursor-pointer">En savoir plus →</button>
         </div>
 
         <div id="giveaways" class="custom-card p-6 rounded-2xl flex flex-col justify-between h-64">
@@ -108,7 +108,7 @@
                     Participez à nos événements réguliers et tentez de gagner des lots exclusifs.
                 </p>
             </div>
-            <a href="https://discord.gg/2VFEHQdBVR" class="text-xs text-red-400 mt-4 hover:underline">En savoir plus →</a>
+            <button onclick="alert('Ouverture des giveaways... (en construction)')" class="text-xs text-red-400 mt-4 hover:underline text-left cursor-pointer">En savoir plus →</button>
         </div>
     </section>
 
@@ -116,37 +116,37 @@
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold tracking-tight text-white">Dernières Actualités</h2>
             <div class="flex space-x-2">
-                <button onclick="alert('Aucun article précédent disponible pour le moment.')" class="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 text-sm text-gray-400 cursor-pointer"><i class="fa-solid fa-chevron-left"></i></button>
-                <button onclick="alert('Aucun article suivant disponible pour le moment.')" class="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 text-sm text-gray-400 cursor-pointer"><i class="fa-solid fa-chevron-right"></i></button>
+                <button onclick="alert('Aucun article précédent.')" class="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 text-sm text-gray-400 cursor-pointer"><i class="fa-solid fa-chevron-left"></i></button>
+                <button onclick="alert('Aucun article suivant.')" class="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 text-sm text-gray-400 cursor-pointer"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="bg-gray-900 border border-gray-800 rounded-xl p-5">
                 <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">BLOG</span>
-                <h3 class="font-bold text-md text-white mt-3 mb-2">Lancement de LANOU | OFF</h3>
+                <h3 class="font-bold text-md text-white mt-3 mb-2">Lancement du site</h3>
                 <p class="text-xs text-gray-400 leading-relaxed mb-4">
-                    Le site LANOU | OFF est en ligne ! Rejoignez dès maintenant notre communauté et nos nouveaux salons...
+                    Le site est désormais en ligne ! Nous allons y ajouter des guides et nos propres outils très prochainement...
                 </p>
-                <a href="https://discord.gg/2VFEHQdBVR" class="text-xs font-medium text-blue-400 hover:underline">Lire l'article</a>
+                <button onclick="alert('Ouverture de l\'article complet... (en construction)')" class="text-xs font-medium text-blue-400 hover:underline cursor-pointer">Lire l'article</button>
             </div>
             
             <div class="bg-gray-900 border border-gray-800 rounded-xl p-5">
                 <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-green-500/10 text-green-400 border border-green-500/20">BLOG</span>
-                <h3 class="font-bold text-md text-white mt-3 mb-2">Nouveaux partenariats</h3>
+                <h3 class="font-bold text-md text-white mt-3 mb-2">Nouveaux projets</h3>
                 <p class="text-xs text-gray-400 leading-relaxed mb-4">
-                    Nouvelles collaborations en cours ! Donnez-nous vos avis et rejoignez les équipes partenaires...
+                    Nous développons de nouveaux codes et d'autres projets sur lesquels vous pourrez donner votre avis...
                 </p>
-                <a href="https://discord.gg/2VFEHQdBVR" class="text-xs font-medium text-green-400 hover:underline">Lire l'article</a>
+                <button onclick="alert('Ouverture de l\'article complet... (en construction)')" class="text-xs font-medium text-green-400 hover:underline cursor-pointer">Lire l'article</button>
             </div>
 
             <div class="bg-gray-900 border border-gray-800 rounded-xl p-5">
                 <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">BLOG</span>
-                <h3 class="font-bold text-md text-white mt-3 mb-2">Animations & Giveaways</h3>
+                <h3 class="font-bold text-md text-white mt-3 mb-2">Animations & concours</h3>
                 <p class="text-xs text-gray-400 leading-relaxed mb-4">
-                    Passioways qu'excitantes animations et gestionnaire des animations, t'attend...
+                    Des concours de création de sites et des quiz exclusifs arrivent sur le site ce mois-ci...
                 </p>
-                <a href="https://discord.gg/2VFEHQdBVR" class="text-xs font-medium text-yellow-400 hover:underline">Lire l'article</a>
+                <button onclick="alert('Ouverture de l\'article complet... (en construction)')" class="text-xs font-medium text-yellow-400 hover:underline cursor-pointer">Lire l'article</button>
             </div>
         </div>
     </section>
@@ -154,7 +154,7 @@
     <footer class="bg-gray-900 border-t border-gray-800 py-6 px-6 text-center md:flex justify-between items-center text-xs text-gray-500">
         <div>Copyright &copy; 2026 LANOU | OFF</div>
         <div class="mt-4 md:mt-0 space-x-4">
-            <a href="https://discord.gg/2VFEHQdBVR" class="hover:text-gray-300"><i class="fa-brands fa-discord mr-1"></i> Discord</a>
+            <a href="#accueil" class="hover:text-gray-300"><i class="fa-solid fa-house mr-1"></i> Accueil</a>
             <span>|</span>
             <a href="#site" class="hover:text-gray-300">Site Internet</a>
         </div>
