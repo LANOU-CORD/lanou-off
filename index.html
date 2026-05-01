@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LANOU | OFF - Accueil</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #111827;
+            color: #f3f4f6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .custom-card {
+            background: linear-gradient(145deg, #1f2937, #111827);
+            border: 1px solid #374151;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .hero-section {
+            background: linear-gradient(to right, rgba(17, 24, 39, 0.9), rgba(17, 24, 39, 0.5)), url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <header class="bg-gray-900 border-b border-gray-800 py-4 px-6 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <span class="text-xl font-bold tracking-wider text-blue-400">LANOU | OFF</span>
+        </div>
+        <nav class="hidden md:flex space-x-6 text-sm font-medium text-gray-400">
+            <a href="#" class="text-blue-400 hover:text-white transition">ACCUEIL</a>
+            <a href="#" class="hover:text-white transition">COMMUNAUTÉ</a>
+            <a href="#" class="hover:text-white transition">SITE INTERNET</a>
+            <a href="#" class="hover:text-white transition">PARTENARIATS</a>
+            <a href="#" class="hover:text-white transition">GIVEAWAYS</a>
+        </nav>
+        <div class="flex items-center space-x-4">
+            <a href="https://discord.gg/2VFEHQdBVR" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition flex items-center shadow-md">
+                <i class="fa-brands fa-discord mr-2"></i> Rejoindre Discord
+            </a>
+        </div>
+    </header>
+
+    <section class="hero-section py-16 px-6 text-center">
+        <div class="max-w-4xl mx-auto bg-gray-900/80 p-8 rounded-2xl border border-gray-800 shadow-2xl backdrop-blur-sm">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">
+                REJOIGNEZ NOTRE COMMUNAUTÉ VIBRANTE !
+            </h1>
+            <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
+                Découvrez un univers de partage, discutez de mangas, partagez vos meilleures sessions gaming et suivez nos actus en direct !
+            </p>
+            <a href="https://discord.gg/2VFEHQdBVR" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl text-lg font-bold shadow-lg transition duration-200 transform hover:-translate-y-1">
+                REJOINDRE LE DISCORD
+            </a>
+            <div class="flex justify-center items-center mt-6 space-x-6 text-sm text-gray-400">
+                <span class="flex items-center"><span class="h-2 w-2 bg-green-500 rounded-full mr-2 animate-pulse"></span> 14 en ligne</span>
+                <span class="flex items-center"><i class="fa-solid fa-user text-gray-500 mr-2"></i> 19 membres</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="custom-card p-6 rounded-2xl flex flex-col justify-between h-64">
+            <div>
+                <div class="text-blue-400 text-3xl mb-4"><i class="fa-solid fa-comments"></i></div>
+                <h3 class="font-bold text-lg text-white mb-2">PARTAGES & DISCUSSIONS</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    Échangez sur vos mangas, films et séries préférés avec d'autres passionnés dans une ambiance conviviale.
+                </p>
+            </div>
+            <span class="text-xs text-blue-400 mt-4">En savoir plus →</span>
+        </div>
+
+        <div class="custom-card p-6 rounded-2xl flex flex-col justify-between h-64">
+            <div>
+                <div class="text-yellow-400 text-3xl mb-4"><i class="fa-solid fa-gamepad"></i></div>
+                <h3 class="font-bold text-lg text-white mb-2">ZONE GAMING</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    Rejoignez les joueurs sur PC, console ou mobile. Partagez vos clips et trouvez des coéquipiers.
+                </p>
+            </div>
+            <span class="text-xs text-yellow-400 mt-4">En savoir plus →</span>
+        </div>
+
+        <div class="custom-card p-6 rounded-2xl flex flex-col justify-between h-64">
+            <div>
+                <div class="text-indigo-400 text-3xl mb-4"><i class="fa-solid fa-handshake"></i></div>
+                <h3 class="font-bold text-lg text-white mb-2">PARTENARIATS & ENTRAIDE</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    Développez vos projets, trouvez de l'aide et bénéficiez d'une belle visibilité au sein du réseau.
+                </p>
+            </div>
+            <span class="text-xs text-indigo-400 mt-4">En savoir plus →</span>
+        </div>
+
+        <div class="custom-card p-6 rounded-2xl flex flex-col justify-between h-64">
+            <div>
+                <div class="text-red-400 text-3xl mb-4"><i class="fa-solid fa-gift"></i></div>
+                <h3 class="font-bold text-lg text-white mb-2">ANIMATIONS & GIVEAWAYS</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    Participez à nos événements réguliers et tentez de gagner des lots exclusifs.
+                </p>
+            </div>
+            <span class="text-xs text-red-400 mt-4">En savoir plus →</span>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-8 border-t border-gray-800 w-full">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold tracking-tight text-white">Dernières Actualités</h2>
+            <div class="flex space-x-2">
+                <button class="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 text-sm text-gray-400"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 text-sm text-gray-400"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-5">
+                <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">BLOG</span>
+                <h3 class="font-bold text-md text-white mt-3 mb-2">Lancement de LANOU | OFF</h3>
+                <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                    Le site LANOU | OFF est en ligne ! Rejoignez dès maintenant notre communauté et nos nouveaux salons...
+                </p>
+                <a href="#" class="text-xs font-medium text-blue-400 hover:underline">Lire l'article</a>
+            </div>
+            
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-5">
+                <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-green-500/10 text-green-400 border border-green-500/20">BLOG</span>
+                <h3 class="font-bold text-md text-white mt-3 mb-2">Nouveaux partenariats</h3>
+                <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                    Nouvelles collaborations en cours ! Donnez-nous vos avis et rejoignez les équipes partenaires...
+                </p>
+                <a href="#" class="text-xs font-medium text-green-400 hover:underline">Lire l'article</a>
+            </div>
+
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-5">
+                <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">BLOG</span>
+                <h3 class="font-bold text-md text-white mt-3 mb-2">Animations & Giveaways</h3>
+                <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                    Passioways qu'excitantes animations et gestionnaire des animations, t'attend...
+                </p>
+                <a href="#" class="text-xs font-medium text-yellow-400 hover:underline">Lire l'article</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 border-t border-gray-800 py-6 px-6 text-center md:flex justify-between items-center text-xs text-gray-500">
+        <div>Copyright &copy; 2026 LANOU | OFF</div>
+        <div class="mt-4 md:mt-0 space-x-4">
+            <a href="https://discord.gg/2VFEHQdBVR" class="hover:text-gray-300"><i class="fa-brands fa-discord mr-1"></i> Discord</a>
+            <span>|</span>
+            <a href="#" class="hover:text-gray-300">Site Internet</a>
+        </div>
+    </footer>
+
+</body>
+</html>
