@@ -69,9 +69,9 @@
     </footer>
 
     <script>
-        // Remplacez ces valeurs par vos clés publiques Supabase
-        const SUPABASE_URL = "https://votre-projet.supabase.co";
-        const SUPABASE_ANON_KEY = "votre-cle-anonyme";
+        // Configuration de l'API Supabase
+        const SUPABASE_URL = "https://iuzrftruzkkxmssqrerv.supabase.co";
+        const SUPABASE_ANON_KEY = "VOTRE_CLE_PUBLIQUE_ICI"; // Remplacez ceci par votre vraie clé publique Supabase
         
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -127,6 +127,7 @@
             }
         });
 
+        // Charger les concours au démarrage
         chargerConcours();
     </script>
 </body>
