@@ -40,18 +40,44 @@
     </header>
 
     <main class="max-w-4xl mx-auto px-6 py-12">
+        <div class="flex justify-end mb-4">
+            <button onclick="toggleAdminPrompt()" class="text-xs bg-gray-900 border border-gray-800 text-gray-500 hover:text-red-400 px-3 py-1.5 rounded-lg cursor-pointer transition">
+                <i class="fa-solid fa-lock mr-1"></i> Mode Admin
+            </button>
+        </div>
+
         <h1 class="text-3xl font-extrabold text-white mb-6">Animations & Giveaways</h1>
+
+        <div id="password-panel" class="content-card p-6 rounded-2xl shadow-lg border border-gray-800 mb-8 hidden">
+            <h3 class="text-md font-bold text-red-400 mb-2"><i class="fa-solid fa-key mr-2"></i> Connexion Administrateur</h3>
+            <p class="text-xs text-gray-400 mb-4">Entrez le code pour gérer les événements, le blog et les concours.</p>
+            <div class="flex flex-col sm:flex-row gap-2 max-w-md">
+                <input type="password" id="admin-password" placeholder="Votre mot de passe" class="bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm text-white focus:outline-none focus:border-red-500 flex-1">
+                <button onclick="verifierMotDePasse()" class="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-bold shadow transition cursor-pointer">
+                    Valider
+                </button>
+            </div>
+        </div>
         
-        <div class="content-card p-6 rounded-2xl shadow-lg border border-gray-800 mb-8">
-            <h3 class="text-lg font-bold text-red-400 mb-4"><i class="fa-solid fa-plus-circle mr-2"></i> Ajouter un concours</h3>
+        <div id="admin-panel" class="content-card p-6 rounded-2xl shadow-lg border border-gray-800 mb-8 hidden">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-red-400"><i class="fa-solid fa-plus-circle mr-2"></i> Espace Admin - Ajouter un concours</h3>
+                <button onclick="deconnecterAdmin()" class="text-xs text-gray-400 hover:text-white transition cursor-pointer">
+                    <i class="fa-solid fa-right-from-bracket mr-1"></i> Quitter
+                </button>
+            </div>
             <form id="form-concours" class="space-y-4">
                 <div>
                     <label class="block text-xs text-gray-400 mb-1">Titre du concours</label>
-                    <input type="text" id="titre" required class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm text-white focus:outline-none focus:border-red-500">
+                    <input type="text" id="titre" required placeholder="Ex: Nitro Giveaways" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm text-white focus:outline-none focus:border-red-500">
                 </div>
                 <div>
-                    <label class="block text-xs text-gray-400 mb-1">Description</label>
-                    <textarea id="description" required rows="2" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm text-white focus:outline-none focus:border-red-500"></textarea>
+                    <label class="block text-xs text-gray-400 mb-1">Description du concours</label>
+                    <textarea id="description" required rows="2" placeholder="Ex: Tentez de remporter 1 an d'abonnement !" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm text-white focus:outline-none focus:border-red-500"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Webhook Discord (Optionnel, pour publier sur votre serveur)</label>
+                    <input type="url" id="discord-webhook" placeholder="https://discord.com/api/webhooks/..." class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm text-white focus:outline-none focus:border-red-500">
                 </div>
                 <button type="submit" class="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-bold shadow transition cursor-pointer">
                     Publier le concours
@@ -71,9 +97,54 @@
     <script>
         // Configuration de l'API Supabase
         const SUPABASE_URL = "https://iuzrftruzkkxmssqrerv.supabase.co";
-        const SUPABASE_ANON_KEY = "VOTRE_CLE_PUBLIQUE_ICI"; // Remplacez ceci par votre vraie clé publique Supabase
+        // Remplacez la chaîne ci-dessous par votre propre clé publique Supabase (publique)
+        const SUPABASE_ANON_KEY = "VOTRE_CLE_PUBLIQUE_ICI"; 
         
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const BON_MOT_DE_PASSE = "Nala0202#";
+
+        function toggleAdminPrompt() {
+            const panel = document.getElementById('password-panel');
+            panel.classList.toggle('hidden');
+        }
+
+        function verifierMotDePasse() {
+            const saisi = document.getElementById('admin-password').value;
+            if (saisi === BON_MOT_DE_PASSE) {
+                document.getElementById('password-panel').classList.add('hidden');
+                document.getElementById('admin-panel').classList.remove('hidden');
+                localStorage.setItem('admin_connecte', 'true');
+            } else {
+                alert('Mot de passe incorrect.');
+            }
+        }
+
+        function deconnecterAdmin() {
+            localStorage.removeItem('admin_connecte');
+            location.reload();
+        }
+
+        if (localStorage.getItem('admin_connecte') === 'true') {
+            document.getElementById('admin-panel').classList.remove('hidden');
+        }
+
+        async function envoyerSurDiscord(titre, description, webhookUrl) {
+            if (!webhookUrl) return;
+            
+            const payload = {
+                content: `🎉 **Nouveau Concours sur LANOU | OFF** 🎉\n\n**${titre}**\n${description}\n\n👉 Venez participer ici : https://discord.gg/2VFEHQdBVR`
+            };
+
+            try {
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+            } catch (err) {
+                console.error("Impossible d'envoyer la notification Discord", err);
+            }
+        }
 
         async function chargerConcours() {
             const { data, error } = await supabase
@@ -94,14 +165,14 @@
             }
 
             listeConcours.innerHTML = data.map(c => `
-                <div class="content-card p-8 rounded-2xl shadow-lg border border-gray-800 flex justify-between items-center">
+                <div class="content-card p-8 rounded-2xl shadow-lg border border-gray-800 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                     <div>
                         <h2 class="text-xl font-bold text-red-400 mb-2">${c.titre}</h2>
                         <p class="text-gray-400 leading-relaxed mb-4">${c.description}</p>
                         <span class="text-xs text-gray-500"><i class="fa-regular fa-calendar-days mr-1"></i> Ajouté le ${new Date(c.created_at).toLocaleDateString('fr-FR')}</span>
                     </div>
-                    <div>
-                        <a href="${c.lien_discord}" target="_blank" class="bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-lg font-bold shadow-lg transition whitespace-nowrap">
+                    <div class="w-full md:w-auto text-left md:text-right">
+                        <a href="${c.lien_discord}" target="_blank" class="block w-full md:w-auto bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-lg font-bold shadow-lg transition text-center whitespace-nowrap">
                             Participer
                         </a>
                     </div>
@@ -113,21 +184,29 @@
             e.preventDefault();
             const titre = document.getElementById('titre').value;
             const description = document.getElementById('description').value;
+            const webhook = document.getElementById('discord-webhook').value;
 
             const { error } = await supabase
                 .from('concours')
-                .insert([{ titre, description, lien_discord: 'https://discord.gg/2VFEHQdBVR' }]);
+                .insert([{ 
+                    titre: titre, 
+                    description: description, 
+                    lien_discord: 'https://discord.gg/2VFEHQdBVR' 
+                }]);
 
             if (error) {
                 alert("Erreur lors de l'ajout : " + error.message);
             } else {
-                alert("Concours ajouté avec succès !");
+                if (webhook) {
+                    await envoyerSurDiscord(titre, description, webhook);
+                }
+
+                alert("Concours ajouté avec succès et publié !");
                 document.getElementById('form-concours').reset();
                 chargerConcours();
             }
         });
 
-        // Charger les concours au démarrage
         chargerConcours();
     </script>
 </body>
